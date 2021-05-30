@@ -1,0 +1,69 @@
+.Footer {
+  left: 0;
+  width: 100%;
+  background-color: #f0f0f0;
+  color: black;
+  padding-top: 5px;
+  position: relative;
+  bottom:0;
+
+}
+
+.AppName,
+.listFooter,
+.ContactStay,
+.ContactIcons {
+  display: block;
+  list-style: none;
+  text-align: center;
+}
+.AppName {
+  font-size: 30px;
+}
+.AppName a {
+  text-decoration: none;
+}
+
+.ContactStay h3 {
+  font-size: 17px;
+  color: #100f21;
+}
+.listFooter {
+  margin: 20px 0;
+}
+
+.listFooter li {
+  display: inline;
+  padding: 5px;
+  color: #100f21;
+}
+
+.listFooter li a {
+  color: #100f21;
+  text-align: center;
+  padding: 10px 5px;
+  display: inline-block;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.ContactIcons {
+  margin: 0;
+  padding: 0;
+}
+
+.ContactIcons li {
+  display: inline-block;
+  padding: 5px;
+}
+.copyright {
+  text-align: center;
+  padding: 3px;
+  background-color: #100f21;
+  color: white;
+}
+.Logo {
+    width : 8%;
+    height : 8%;
+    padding-top : 16px;
+}
