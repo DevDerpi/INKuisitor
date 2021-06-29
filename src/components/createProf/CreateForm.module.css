@@ -1,0 +1,84 @@
+.form {
+  padding: 1rem;
+}
+
+.control {
+  margin-bottom: 0.5rem;
+}
+
+.control label,
+.control select {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.control input,
+.control textarea,
+.control Select {
+  display: block;
+  font: inherit;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  padding: 0.25rem;
+  width: 100%;
+}
+
+.actions {
+  margin-top: 1rem;
+  text-align: right;
+}
+
+.sigContainer button{
+  width:100%;
+}
+.actions button,
+.sigContainer button {
+  font: inherit;
+  cursor: pointer;
+  background-color: #77002e;
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border: 1px solid #77002e;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.actions button:hover,
+.actions button:active,
+.sigContainer button:hover,
+.sigContainer button:active {
+  background-color: #a50e48;
+  border-color: #a50e48;
+}
+.actions button:disabled,
+.sigContainer button:disabled {
+  background-color: #7a6b71;
+  border-color: #7a6b71;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  top: 10%;
+  left: 10%;
+}
+
+.sigContainer {
+  width: 80%;
+  height: 80%;
+  margin: 0 auto;
+  background-color: #fff;
+}
+
+.sigPad {
+  width: 100%;
+  height: 100%;
+}
+
+.sigImage {
+  background-size: 200px 50px;
+  width: 200px;
+  height: 50px;
+  background-color: white;
+}
