@@ -18,6 +18,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 - [x] implement UI and Layout
 - [x] Divide application into pages
 - [x] Enable routing (connect react router).
+- [ ] integrate with Backend server
 - ## Verify Page: 
 - [x] divide verify page into components
 - [x] implement verify page form component
@@ -33,8 +34,9 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 - [x] divide upload page into compoennt
 - [x] implement upload page's form component , allowing user to interact with a form to add a new client signature profile, same as the previous form.
 - [x] implement dynamic reactive component , changes upon getting response from the the server that account is successfully created (react-success-indicator) , changing on the UI from form componet to the success indicator message 
-- [ ] handle sending a mulitpart POST request to the server ,contains name of the client profile and attached an array of 3 images
+- [ ] handle sending a mulitpart POST request to the server ,contains name of the client profile and attached an array of 3 images , taking response to indicate successful creation of a new profile
 - ## Others: 
 - [ ] implement Home page ,divide it into components , write a short brief about the application
 - [ ] implement other pages in the application , such as about , contact , FAQ , etc..
 - [ ] Enhance Styling of the Application
+- [ ] Adding Open Camera to capture signature feature
