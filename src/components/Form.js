@@ -1,51 +1,121 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import styles from "./Form.module.css";
 import Card from "./UI/Card";
-const Form = (props) => {
-  const titleInputRef = useRef();
-  const imageInputRef = useRef();
-  const addressInputRef = useRef();
-  const descInputRef = useRef();
+import SignatureCanvas from "react-signature-canvas";
+import Select from "react-select";
 
+const Form = (props) => {
+  const [selectedProfile, setSelectedProfile] = useState(null);
+  const [selectedOption, setSelectedOption] = useState([]);
+
+  const [isDisabled, setIsDisabled] = useState(false);
+  // const userProfileRef = useRef();
+  const sigPadRef = useRef({});
+  const [trimmedDataUrl, setTrimmedDataUrl] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const profiles = [
+    { value: "Atef", label: "Atef" },
+    { value: "Wazer", label: "Wazer" },
+    { value: "Hossam", label: "Hossam" },
+    { value: "Hassan", label: "Hassan" },
+    { value: "Magdy", label: "Magdy" },
+    { value: "Mahdi", label: "Mahdi" },
+  ];
+  const options = [
+    { value: "write", label: "Sign Here" },
+    { value: "upload", label: "Upload Your Signature" },
+  ];
+  let signatureData;
+  let optionID;
+
+  //handling submission
   const submitHandler = (event) => {
     event.preventDefault();
-    const enteredTitle = titleInputRef.current.value;
-    const enteredImage = imageInputRef.current.value;
-    const enteredAddress = addressInputRef.current.value;
-    const enteredDesc = descInputRef.current.value;
-    const meetup = {
+    const chosenProfile = selectedProfile;
+
+    const profile = {
       id: Math.random().toString(),
-      title: enteredTitle,
-      image: enteredImage,
-      address: enteredAddress,
-      description: enteredDesc,
+      profile: chosenProfile,
+      signatureData,
+      optionID,
     };
-    props.onAddNewMeetup(meetup);
-    titleInputRef.current.value = "";
-    imageInputRef.current.value = "";
-    addressInputRef.current.value = "";
-    descInputRef.current.value = "";
+    props.onVerify(profile);
+    // userProfileRef.current.value = "Ahmed";
+  };
+  const fileChangedHandler = (event) => {
+    setSelectedImage(event.target.files[0]);
+    signatureData = selectedImage;
+    optionID = "P";
+    setIsDisabled(true);
+  };
+  const trim = (event) => {
+    event.preventDefault();
+    setTrimmedDataUrl(
+      sigPadRef.current.getTrimmedCanvas().toDataURL("image/png")
+    );
+    signatureData = trimmedDataUrl;
+    optionID = "B";
+    sigPadRef.current.clear();
+
+    setIsDisabled(true);
   };
   return (
     <Card>
       <form className={styles.form} onSubmit={submitHandler}>
         <div className={styles.control}>
-          <label for="clients">Choose a client</label>
-          <select name="cars" id="cars">
+          <label for="profiles">Choose a Profile</label>
+          <Select
+            defaultValue={selectedProfile}
+            onChange={setSelectedProfile}
+            options={profiles}
+            className={styles.Select}
+          />
+          {/* <select name="profiles" id="profiles" ref={userProfileRef}>
             <option value="Ahmed">Ahmed</option>
             <option value="Hassan">Hassan</option>
             <option value="Mohamed">Mohamed</option>
             <option value="Hossam">Hossam</option>
-          </select>
+          </select> */}
+          <label for="options">Signature Option</label>
+          <Select
+            defaultValue={selectedOption}
+            onChange={setSelectedOption}
+            options={options}
+            isDisabled={isDisabled}
+          />
         </div>
-        <div className={styles.control}>
-          <label htmlFor="image">Signature Image </label>
-          <input type="url" required id="image" ref={imageInputRef}></input>
-        </div>
+        {selectedOption.value == "write" ? (
+          <div className={styles.sigContainer}>
+            <Card>
+              <SignatureCanvas
+                ref={sigPadRef}
+                penColor="black"
+                backgroundColor="white"
+                canvasProps={{ className: styles.sigPad }}
+              />
+              <button onClick={trim} disabled={isDisabled}>
+                Confirm Signature
+              </button>
+              <div className={styles.sigImage}>
+                {trimmedDataUrl ? (
+                  <img className={styles.sigImage} src={trimmedDataUrl} />
+                ) : null}
+              </div>
+            </Card>
+          </div>
+        ) : selectedOption.value == "upload" ? (
+          <input type="file" onChange={fileChangedHandler} />
+        ) : (
+          <p>Please Choose An Option</p>
+        )}
 
-        
         <div className={styles.actions}>
-          <button type="submit">Verify Signature</button>
+          <button
+            type="submit"
+            disabled={!isDisabled || selectedProfile == null}
+          >
+            Verify Signature
+          </button>
         </div>
       </form>
     </Card>
