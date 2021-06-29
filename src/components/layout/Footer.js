@@ -24,9 +24,6 @@ function Footer() {
                 <Link to="#">Press</Link>
               </li>
               <li>
-                <Link to="#">Careers</Link>
-              </li>
-              <li>
                 <Link to="#">FAQ</Link>
               </li>
               <li>
