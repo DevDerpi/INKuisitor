@@ -39,4 +39,3 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 - [x] implement Home page ,divide it into components , write a short brief about the application
 - [ ] implement other pages in the application , such as about
 - [x] Enhance Styling of the Application
-- [ ] Adding Open Camera to capture signature feature
