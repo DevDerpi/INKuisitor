@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./CreateForm.module.css";
 import Card from "../UI/Card";
 import SignatureCanvas from "react-signature-canvas";
@@ -13,34 +13,36 @@ const Form = (props) => {
   const sigPadRef = useRef({});
   const [trimmedDataUrl, setTrimmedDataUrl] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
-  const [enteredName , setEnteredName] = useState("");
-
+  const [enteredName, setEnteredName] = useState("");
+  const [signatureData, setSignatureData] = useState("");
+  const [optionID, setOptionID] = useState("");
   const options = [
     { value: "write", label: "Sign Here" },
     { value: "upload", label: "Upload Your Signature" },
   ];
-  let signatureData;
-  let optionID;
- 
-  const inputChangeHandler = ()=>{
+
+  const inputChangeHandler = () => {
     setEnteredName(clientNameInputRef.current.value);
-  }
+  };
   //handling submission
   const submitHandler = (event) => {
     event.preventDefault();
-    const newProfile = {
-      id: Math.random().toString(),
-      clientName: enteredName,
-      signatureData,
-      optionID,
-    };
-    props.onAdd(newProfile);
+    // const newProfile = {
+    //   clientName: enteredName,
+    //   signatureData,
+    //   optionID,
+    // };
+    let formData = new FormData();
+    formData.append("name", enteredName);
+    formData.append("image", signatureData);
+    formData.append("option", optionID);
+    formData.append("action", "add-signature");
+    props.onAdd(formData);
     // userProfileRef.current.value = "Ahmed";
   };
   const fileChangedHandler = (event) => {
-    setSelectedImage(event.target.files[0]);
-    signatureData = selectedImage;
-    optionID = "P";
+    setSelectedImage(event.target.files);
+    setOptionID("P");
     setIsDisabled(true);
   };
   const trim = (event) => {
@@ -48,20 +50,32 @@ const Form = (props) => {
     setTrimmedDataUrl(
       sigPadRef.current.getTrimmedCanvas().toDataURL("image/png")
     );
-    signatureData = trimmedDataUrl;
-    optionID = "B";
+    setOptionID("B");
     sigPadRef.current.clear();
-
     setIsDisabled(true);
   };
+  useEffect(() => {
+    if (selectedImage) {
+      setSignatureData(selectedImage);
+    } else if (trimmedDataUrl) {
+      setSignatureData(trimmedDataUrl);
+    }
+  }, [trimmedDataUrl, selectedImage]);
+  // console.log(signatureData);
   return (
     <Card>
       <form className={styles.form} onSubmit={submitHandler}>
         <div className={styles.control}>
           <label htmlFor="cName">Client's Name</label>
-          <input type="text" required id="cName" ref={clientNameInputRef} onChange={inputChangeHandler}></input>
+          <input
+            type="text"
+            required
+            id="cName"
+            ref={clientNameInputRef}
+            onChange={inputChangeHandler}
+          ></input>
 
-          <label for="options">Signature Option</label>
+          <label htmlFor="options">Signature Option</label>
           <Select
             defaultValue={selectedOption}
             onChange={setSelectedOption}
@@ -69,7 +83,7 @@ const Form = (props) => {
             isDisabled={isDisabled}
           />
         </div>
-        {selectedOption.value == "write" ? (
+        {selectedOption.value === "write" ? (
           <div className={styles.sigContainer}>
             <Card>
               <SignatureCanvas
@@ -83,22 +97,19 @@ const Form = (props) => {
               </button>
               <div className={styles.sigImage}>
                 {trimmedDataUrl ? (
-                  <img className={styles.sigImage} src={trimmedDataUrl} />
+                  <img className={styles.sigImage} src={trimmedDataUrl} alt="" />
                 ) : null}
               </div>
             </Card>
           </div>
-        ) : selectedOption.value == "upload" ? (
-          <input type="file" onChange={fileChangedHandler} />
+        ) : selectedOption.value === "upload" ? (
+          <input type="file" multiple onChange={fileChangedHandler} />
         ) : (
           <p>Please Choose An Option To Capture Your Signature</p>
         )}
 
         <div className={styles.actions}>
-          <button
-            type="submit"
-            disabled={!isDisabled || enteredName == ""}
-          >
+          <button type="submit" disabled={!isDisabled || enteredName === ""}>
             Add New Signature Profile
           </button>
         </div>
