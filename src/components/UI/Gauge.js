@@ -7,7 +7,7 @@ const Gauge = (props) => {
   let message = "The Signature is ";
   let percentage = props.percentage;
   if (percentage >= THRESHOLD) {
-    message += "Original";
+    message += "Genuine";
   } else {
     message += "Forged";
   }
