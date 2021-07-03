@@ -50,7 +50,7 @@ const MainNavigation = () => {
               </Link>
             </MDBNavbarLink>
           </MDBNavbarItem>
-          <MDBNavbarItem>
+          {/* <MDBNavbarItem>
             <MDBNavbarLink >
               <Link to="/AdminPanel">
                 <MDBBtn rounded color="dark" >
@@ -58,11 +58,11 @@ const MainNavigation = () => {
                 </MDBBtn>
               </Link>
             </MDBNavbarLink>
-          </MDBNavbarItem>
+          </MDBNavbarItem> */}
         </MDBNavbarNav>
-          <MDBBtn  rounded color="danger" className="me-2" type="button">
-            <MDBIcon className="fas fa-sign-out-alt" size="3x" />
-          </MDBBtn>
+            <MDBBtn  rounded color="danger" className="me-2" type="button">
+              <MDBIcon className="fas fa-sign-out-alt" size="3x" />
+            </MDBBtn>
       </MDBContainer>
     </MDBNavbar>
   );

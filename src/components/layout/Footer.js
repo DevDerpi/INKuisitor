@@ -38,7 +38,7 @@ function Footer() {
               <h3>Stay in touch</h3>
               <ul className={styles.ContactIcons}>
                 <li>
-                  <a href="#">
+                  <a href="https://www.facebook.com/EngDerpi/">
                     <img
                       width="34"
                       height="34"
@@ -49,7 +49,7 @@ function Footer() {
                 </li>
 
                 <li>
-                  <a href="#">
+                  <a href="https://www.facebook.com/EngDerpi/">
                     <img
                       width="34"
                       height="34"
