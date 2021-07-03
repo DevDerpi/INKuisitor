@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import styles from "./Form.module.css";
 import Card from "./UI/Card";
 import SignatureCanvas from "react-signature-canvas";
@@ -7,45 +7,42 @@ import Select from "react-select";
 const Form = (props) => {
   const [selectedProfile, setSelectedProfile] = useState(null);
   const [selectedOption, setSelectedOption] = useState([]);
-
   const [isDisabled, setIsDisabled] = useState(false);
   // const userProfileRef = useRef();
   const sigPadRef = useRef({});
   const [trimmedDataUrl, setTrimmedDataUrl] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
-  const profiles = [
-    { value: "Atef", label: "Atef" },
-    { value: "Wazer", label: "Wazer" },
-    { value: "Hossam", label: "Hossam" },
-    { value: "Hassan", label: "Hassan" },
-    { value: "Magdy", label: "Magdy" },
-    { value: "Mahdi", label: "Mahdi" },
-  ];
+  const [signatureData, setSignatureData] = useState("");
+  const [optionID, setOptionID] = useState("");
+  const fetchedProfiles = props.profiles;
+  // const profiles = [
+  //   { value: "Atef", label: "Atef" },
+  //   { value: "Wazer", label: "Wazer" },
+  //   { value: "Hossam", label: "Hossam" },
+  //   { value: "Hassan", label: "Hassan" },
+  //   { value: "Magdy", label: "Magdy" },
+  //   { value: "Mahdi", label: "Mahdi" },
+  // ];
+
   const options = [
     { value: "write", label: "Sign Here" },
     { value: "upload", label: "Upload Your Signature" },
   ];
-  let signatureData;
-  let optionID;
 
   //handling submission
   const submitHandler = (event) => {
     event.preventDefault();
-    const chosenProfile = selectedProfile;
-
-    const profile = {
-      id: Math.random().toString(),
-      profile: chosenProfile,
-      signatureData,
-      optionID,
-    };
-    props.onVerify(profile);
+    let formData = new FormData();
+    formData.append("name", selectedProfile);
+    formData.append("image", signatureData);
+    formData.append("option", optionID);
+    formData.append("action", "verify-signature");
+    props.onVerify(formData);
     // userProfileRef.current.value = "Ahmed";
   };
   const fileChangedHandler = (event) => {
     setSelectedImage(event.target.files[0]);
-    signatureData = selectedImage;
-    optionID = "P";
+    setOptionID("P");
     setIsDisabled(true);
   };
   const trim = (event) => {
@@ -53,21 +50,27 @@ const Form = (props) => {
     setTrimmedDataUrl(
       sigPadRef.current.getTrimmedCanvas().toDataURL("image/png")
     );
-    signatureData = trimmedDataUrl;
-    optionID = "B";
+    setOptionID("B");
     sigPadRef.current.clear();
 
     setIsDisabled(true);
   };
+  useEffect(() => {
+    if (selectedImage) {
+      setSignatureData(selectedImage);
+    } else if (trimmedDataUrl) {
+      setSignatureData(trimmedDataUrl);
+    }
+  }, [trimmedDataUrl, selectedImage]);
   return (
     <Card>
       <form className={styles.form} onSubmit={submitHandler}>
         <div className={styles.control}>
-          <label for="profiles">Choose a Profile</label>
+          <label htmlFor="profiles">Choose a Profile</label>
           <Select
             defaultValue={selectedProfile}
             onChange={setSelectedProfile}
-            options={profiles}
+            options={fetchedProfiles}
             className={styles.Select}
           />
           {/* <select name="profiles" id="profiles" ref={userProfileRef}>
@@ -76,7 +79,7 @@ const Form = (props) => {
             <option value="Mohamed">Mohamed</option>
             <option value="Hossam">Hossam</option>
           </select> */}
-          <label for="options">Signature Option</label>
+          <label htmlFor="options">Signature Option</label>
           <Select
             defaultValue={selectedOption}
             onChange={setSelectedOption}
@@ -84,7 +87,7 @@ const Form = (props) => {
             isDisabled={isDisabled}
           />
         </div>
-        {selectedOption.value == "write" ? (
+        {selectedOption.value === "write" ? (
           <div className={styles.sigContainer}>
             <Card>
               <SignatureCanvas
@@ -98,21 +101,21 @@ const Form = (props) => {
               </button>
               <div className={styles.sigImage}>
                 {trimmedDataUrl ? (
-                  <img className={styles.sigImage} src={trimmedDataUrl} />
+                  <img className={styles.sigImage} src={trimmedDataUrl} alt="" />
                 ) : null}
               </div>
             </Card>
           </div>
-        ) : selectedOption.value == "upload" ? (
+        ) : selectedOption.value === "upload" ? (
           <input type="file" onChange={fileChangedHandler} />
         ) : (
-          <p>Please Choose An Option</p>
+          <p>Please Choose An Option To Capture Your Signature</p>
         )}
 
         <div className={styles.actions}>
           <button
             type="submit"
-            disabled={!isDisabled || selectedProfile == null}
+            disabled={!isDisabled || selectedProfile === null}
           >
             Verify Signature
           </button>

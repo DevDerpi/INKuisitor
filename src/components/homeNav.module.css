@@ -1,0 +1,32 @@
+.actions {
+  margin-top: 1rem;
+  text-align: left;
+  padding:20px;
+  text-align: center;
+}
+.actions button {
+  font: inherit;
+  cursor: pointer;
+  background-color: #6140a9;
+  color: white;
+  padding: 0.5rem 1.5rem;
+  margin: 0.5rem;
+  border: 1px solid #6140a9;
+  border-radius: 4px;
+  font-weight: bold;
+}
+.actions section {
+    font-size: 30px;
+    text-align: center;
+    margin:-19px;
+    border : 2px  ;
+    padding:80px;
+
+}
+.actions button:hover,
+.actions button:active,
+.sigContainer button:hover,
+.sigContainer button:active {
+  background-color: #724ac7;
+  border-color: #724ac7;
+}
