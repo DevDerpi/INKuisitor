@@ -23,20 +23,26 @@ const UploadPage = () => {
     for (let pair of signData.entries()) {
       console.log(pair[0] + ", " + pair[1]);
     }
-    axios.post(`Hossam's Backend API Here`, signData).then(
-      (res) => {
-        console.log(res);
-        console.log(res.data);
-        setIsLoading(false);
-        setIsDone(true);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    axios
+      .post(`Hossam's Backend API Here`, signData, {
+        headers: {
+          "content-type": "multipart/form-data", 
+        },
+      })
+      .then(
+        (res) => {
+          console.log(res);
+          console.log(res.data);
+          setIsLoading(false);
+          setIsDone(true);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   };
   if (isLoading) {
-    return <Loading/>;
+    return <Loading />;
   }
   if (isDone) {
     return (

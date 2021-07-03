@@ -39,7 +39,12 @@ const VerifyPage = () => {
     axios
       .post(
         `Hossam's Backend API Here to send the verify data , then to get response (percentage of similarity)`,
-        verifyData
+        verifyData,
+        {
+          headers: {
+            "content-type": "multipart/form-data",
+          },
+        }
       )
       .then(
         (res) => {
@@ -54,11 +59,10 @@ const VerifyPage = () => {
           console.log(error);
         }
       );
-      
   };
   //********************************************************************** */
   if (isLoading) {
-    return <Loading/>;
+    return <Loading />;
   }
   if (isVerified) {
     return <Gauge percentage={gaugePercentage} />;
