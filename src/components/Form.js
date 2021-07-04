@@ -33,16 +33,14 @@ const Form = (props) => {
   const submitHandler = (event) => {
     event.preventDefault();
     let formData = new FormData();
-    formData.append("name", selectedProfile);
-    formData.append("image", signatureData);
+    formData.append("ClientName", selectedProfile);
+    formData.append("imag", signatureData);
     formData.append("option", optionID);
-    formData.append("action", "verify-signature");
     props.onVerify(formData);
-    // userProfileRef.current.value = "Ahmed";
   };
   const fileChangedHandler = (event) => {
     setSelectedImage(event.target.files[0]);
-    setOptionID("P");
+    setOptionID("Image");
     setIsDisabled(true);
   };
   const trim = (event) => {
@@ -50,7 +48,7 @@ const Form = (props) => {
     setTrimmedDataUrl(
       sigPadRef.current.getTrimmedCanvas().toDataURL("image/png")
     );
-    setOptionID("B");
+    setOptionID("Base64");
     sigPadRef.current.clear();
 
     setIsDisabled(true);
