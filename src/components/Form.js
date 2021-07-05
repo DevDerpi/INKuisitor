@@ -8,7 +8,6 @@ const Form = (props) => {
   const [selectedProfile, setSelectedProfile] = useState(null);
   const [selectedOption, setSelectedOption] = useState([]);
   const [isDisabled, setIsDisabled] = useState(false);
-  // const userProfileRef = useRef();
   const sigPadRef = useRef({});
   const [trimmedDataUrl, setTrimmedDataUrl] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
@@ -34,7 +33,7 @@ const Form = (props) => {
     event.preventDefault();
     let formData = new FormData();
     formData.append("ClientName", selectedProfile);
-    formData.append("imag", signatureData);
+    formData.append("verifiedImg", signatureData);
     formData.append("option", optionID);
     props.onVerify(formData);
   };
@@ -75,12 +74,6 @@ const Form = (props) => {
             options={fetchedProfiles}
             className={styles.Select}
           />
-          {/* <select name="profiles" id="profiles" ref={userProfileRef}>
-            <option value="Ahmed">Ahmed</option>
-            <option value="Hassan">Hassan</option>
-            <option value="Mohamed">Mohamed</option>
-            <option value="Hossam">Hossam</option>
-          </select> */}
           <label htmlFor="options">Signature Option</label>
           <Select
             defaultValue={selectedOption}
