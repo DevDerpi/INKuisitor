@@ -15,7 +15,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 ## Backend
 - https://github.com/hossam507/INKuisitor-Backend
 
-- ### To-Do List: 
+- ## To-Do List: 
 - [x] implement UI and Layout
 - [x] Divide application into pages
 - [x] Enable routing (connect react router).
