@@ -29,9 +29,9 @@
   text-align: right;
 }
 
-.sigContainer button{
-  width:100%;
-  
+.sigContainer button {
+  width: 49.5%;
+  margin: 1.2px;
 }
 .actions button,
 .sigContainer button {

@@ -43,6 +43,10 @@ const Form = (props) => {
     setOptionID("Image");
     setIsDisabled(true);
   };
+  const clear = (event) => {
+    event.preventDefault();
+    sigPadRef.current.clear();
+  };
   const trim = (event) => {
     event.preventDefault();
     setTrimmedDataUrl(
@@ -94,12 +98,19 @@ const Form = (props) => {
                 backgroundColor="white"
                 canvasProps={{ className: styles.sigPad }}
               />
+              <button onClick={clear} disabled={isDisabled}>
+                Clear Pad
+              </button>
               <button onClick={trim} disabled={isDisabled}>
                 Confirm Signature
               </button>
               <div className={styles.sigImage}>
                 {trimmedDataUrl ? (
-                  <img className={styles.sigImage} src={trimmedDataUrl} alt="" />
+                  <img
+                    className={styles.sigImage}
+                    src={trimmedDataUrl}
+                    alt=""
+                  />
                 ) : null}
               </div>
             </Card>
