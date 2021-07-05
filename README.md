@@ -18,7 +18,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 - [x] implement UI and Layout
 - [x] Divide application into pages
 - [x] Enable routing (connect react router).
-- [ ] integrate with Backend server
+- [x] integrate with Backend server
 - ## Verify Page: 
 - [x] divide verify page into components
 - [x] implement verify page form component
