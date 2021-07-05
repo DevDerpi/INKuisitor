@@ -44,6 +44,10 @@ const Form = (props) => {
     setOptionID("Image");
     setIsDisabled(true);
   };
+  const clear = (event) => {
+    event.preventDefault();
+    sigPadRef.current.clear();
+  };
   const trim = (event) => {
     event.preventDefault();
     setTrimmedDataUrl(
@@ -95,6 +99,18 @@ const Form = (props) => {
         </div>
         {selectedOption.value === "write" ? (
           <div className={styles.sigContainer}>
+            {flag === 0 ? (
+              <h3>Please sign {3 - flag} more times..</h3>
+            ) : (
+              <p></p>
+            )}
+            {flag === 1 ? (
+              <h3>Please sign {3 - flag} more times..</h3>
+            ) : (
+              <p></p>
+            )}
+            {flag === 2 ? <h3>Please sign {3 - flag} more time..</h3> : <p></p>}
+            {flag === 3 ? <h3>Thank You ! </h3> : <p></p>}
             <Card>
               <SignatureCanvas
                 ref={sigPadRef}
@@ -102,9 +118,16 @@ const Form = (props) => {
                 backgroundColor="white"
                 canvasProps={{ className: styles.sigPad }}
               />
+              <button
+                onClick={clear}
+                disabled={isDisabled}
+              >
+                Clear Pad
+              </button>
               <button onClick={trim} disabled={isDisabled}>
                 Confirm Signature
               </button>
+
               <div className={styles.sigImage}>
                 {trimmedDataUrl ? (
                   <img
