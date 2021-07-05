@@ -37,5 +37,5 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 - [x] handle sending a mulitpart POST request to the server ,contains name of the client profile and attached a FileList object , taking response to indicate successful creation of a new profile
 - ## Others: 
 - [x] implement Home page ,divide it into components , write a short brief about the application
-- [ ] implement other pages in the application , such as about
+- [x] implement other pages in the application , about and legal
 - [x] Enhance Styling of the Application
