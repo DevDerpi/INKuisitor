@@ -32,7 +32,7 @@ const Form = (props) => {
   const submitHandler = (event) => {
     event.preventDefault();
     let formData = new FormData();
-    formData.append("ClientName", selectedProfile);
+    formData.append("ClientName", selectedProfile.value);
     formData.append("verifiedImg", signatureData);
     formData.append("option", optionID);
     props.onVerify(formData);
