@@ -11,22 +11,14 @@ const UploadPage = () => {
 
   const addSignatureHandler = (signData) => {
     setIsLoading(true);
-    // const profile = {
-    //   value: signData.clientName,
-    //   label: signData.clientName,
-    // };
-    // let formdata = new FormData();
-    // // formdata.append("image", signData.signatureData);
-    // formdata.append("value", signData.clientName);
-    // formdata.append("label", signData.clientName);
 
     for (let pair of signData.entries()) {
       console.log(pair[0] + ", " + pair[1]);
     }
     axios
-      .post(`Hossam's Backend API Here`, signData, {
+      .post(`http://127.0.0.1:8000/api/create`, signData, {
         headers: {
-          "content-type": "multipart/form-data", 
+          "content-type": "multipart/form-data",
         },
       })
       .then(

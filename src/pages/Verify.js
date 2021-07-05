@@ -13,14 +13,16 @@ const VerifyPage = () => {
     setIsLoading(true);
     axios
       //Hossam's Backend API To Fetch Profile Names as an array of objects contains value and label pairs
-      .get(`https://profiles-744c8-default-rtdb.firebaseio.com/profiles.json`)
+      .get(`http://127.0.0.1:8000/api/details`)
       .then(
         (res) => {
           const profiles = [];
-          for (const key in res.data) {
+          const data = res.data.data;
+          for (const key in data) {
             const profile = {
               id: key,
-              ...res.data[key],
+              label: data[key].clientName,
+              value: data[key].clientName,
             };
             profiles.push(profile);
           }
@@ -37,15 +39,11 @@ const VerifyPage = () => {
   const verifySignatureHandler = (verifyData) => {
     setIsLoading(true);
     axios
-      .post(
-        `Hossam's Backend API Here to send the verify data , then to get response (percentage of similarity)`,
-        verifyData,
-        {
-          headers: {
-            "content-type": "multipart/form-data",
-          },
-        }
-      )
+      .post(`http://127.0.0.1:8000/api/verify`, verifyData, {
+        headers: {
+          "content-type": "multipart/form-data",
+        },
+      })
       .then(
         (res) => {
           console.log(res);
