@@ -33,7 +33,11 @@ const Form = (props) => {
     event.preventDefault();
     let formData = new FormData();
     formData.append("ClientName", selectedProfile.value);
-    formData.append("verifiedImg", signatureData);
+    if (trimmedDataUrl && !selectedImage) {
+      formData.append("BverifiedImg", signatureData);
+    } else {
+      formData.append("verifiedImg", signatureData);
+    }
     formData.append("option", optionID);
     props.onVerify(formData);
   };
