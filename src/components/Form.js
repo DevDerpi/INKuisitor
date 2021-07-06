@@ -32,7 +32,7 @@ const Form = (props) => {
   const submitHandler = (event) => {
     event.preventDefault();
     let formData = new FormData();
-    formData.append("ClientName", selectedProfile.value);
+    formData.append("clientName", selectedProfile.value);
     if (trimmedDataUrl && !selectedImage) {
       formData.append("BverifiedImg", signatureData);
     } else {
