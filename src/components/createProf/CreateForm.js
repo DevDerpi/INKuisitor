@@ -31,9 +31,21 @@ const Form = (props) => {
     event.preventDefault();
     let formData = new FormData();
     formData.append("clientName", enteredName);
-    formData.append("img1", signatureData1);
-    formData.append("img2", signatureData2);
-    formData.append("img3", signatureData3);
+    if (
+      trimmedDataUrl &&
+      !selectedImage1 &&
+      !selectedImage2 &&
+      !selectedImage3
+    ) {
+      formData.append("Bimg1", signatureData1);
+      formData.append("Bimg2", signatureData2);
+      formData.append("Bimg3", signatureData3);
+    } else {
+      formData.append("img1", signatureData1);
+      formData.append("img2", signatureData2);
+      formData.append("img3", signatureData3);
+    }
+
     formData.append("option", optionID);
     props.onAdd(formData);
   };
@@ -118,10 +130,7 @@ const Form = (props) => {
                 backgroundColor="white"
                 canvasProps={{ className: styles.sigPad }}
               />
-              <button
-                onClick={clear}
-                disabled={isDisabled}
-              >
+              <button onClick={clear} disabled={isDisabled}>
                 Clear Pad
               </button>
               <button onClick={trim} disabled={isDisabled}>
