@@ -1,7 +1,9 @@
 # INKuisitor
 Image processing and ML based, forensic offline signature verification Web Application 
 
-
+## Abstract : 
+Biometrics (or biometric authentication) refers to the method of identification of humans by their characteristics or traits. Biometrics is employed in computing as a sort of identification and access control which is one among the foremost secure methods to ensure human’s privacy.
+The application uses a Convolution Neural Network (CNN) for distinguishing between forged and genuine signatures through a Siamese Neural Network. With an input of three signature images to create a new signature profile , store in database for later verification requests and a single input signature image used for verification of person’s identity.
 ## Available Scripts
 
 In the project directory, you can run:
