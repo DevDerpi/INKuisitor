@@ -35,11 +35,15 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 - [x] implement gauge to show the percentage of the similarity between the provided signature and the stored on database one , and showing wether the signature is forged or geniune based on a pre-defined threshold (React-gauge)
 - [x] handle side effects , fetch the profiles array from the server
 - [x] handle sending POST request to server from verify component , and taking response put inside the gauge (percentage of similarity)
+- Verify Page Block Diagram :
+![INK Verify(ALL) Flowchart](https://user-images.githubusercontent.com/58363102/127767449-bb65b8c3-d7a4-4c7e-8ed1-f7659980a05b.png)
 - ## Upload Page: 
 - [x] divide upload page into compoennt
 - [x] implement upload page's form component , allowing user to interact with a form to add a new client signature profile, same as the previous form.
 - [x] implement dynamic reactive component , changes upon getting response from the the server that account is successfully created (react-success-indicator) , changing on the UI from form componet to the success indicator message 
 - [x] handle sending a mulitpart POST request to the server ,contains name of the client profile and attached a FileList object , taking response to indicate successful creation of a new profile
+- Upload Page Block Diagram : 
+![Add New Signature Profile Flowchart](https://user-images.githubusercontent.com/58363102/127767466-47a64be1-f423-47b5-a868-b16b9a89da78.png)
 - ## Others: 
 - [x] implement Home page ,divide it into components , write a short brief about the application
 - [x] implement other pages in the application , about and legal
