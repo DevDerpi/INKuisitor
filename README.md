@@ -14,10 +14,13 @@ Install dependencies (Important Node Modules to start the project)
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-## Backend
-- https://github.com/hossam507/INKuisitor-Backend
-## Machine Learning Model
-- https://github.com/ahmedatef1610/INKuisitor-Machine-Learning-Model
+- ## Links : 
+### <a href="https://drive.google.com/file/d/1DrdxYrs3DulM7idhr4cCFoZPfXeOaHng/view" >INKuisitor's DEMO</a> 
+### <a href="https://drive.google.com/file/d/1QAHa9znnBrcRrZkXDISJDrzMCNpvC72q/view">INKuisitor's Documentation</a> 
+### <a href="https://drive.google.com/file/d/1ZWg0DFBU8MovKR2mqXbC4z-rW9_3tWw_/view" >INKuisitor's Presentation</a> 
+### <a href="https://github.com/hossam507/INKuisitor-Backend" >INKuisitor's Backend</a> 
+### <a href="https://github.com/ahmedatef1610/INKuisitor-Machine-Learning-Model" > INKuisitor's Machine Learning Model </a> 
+
 
  ## To-Do List: 
 - [x] implement UI and Layout
