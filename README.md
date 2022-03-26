@@ -14,7 +14,7 @@ Install dependencies (Important Node Modules to start the project)
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-- ## Links : 
+## Links : 
 ### <a href="https://drive.google.com/file/d/1DrdxYrs3DulM7idhr4cCFoZPfXeOaHng/view" >INKuisitor's DEMO</a> 
 ### <a href="https://drive.google.com/file/d/1QAHa9znnBrcRrZkXDISJDrzMCNpvC72q/view">INKuisitor's Documentation</a> 
 ### <a href="https://drive.google.com/file/d/1ZWg0DFBU8MovKR2mqXbC4z-rW9_3tWw_/view" >INKuisitor's Presentation</a> 
